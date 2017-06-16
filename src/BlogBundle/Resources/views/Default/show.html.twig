@@ -1,0 +1,116 @@
+{% extends "BlogBundle::base.html.twig" %}
+
+{% block body %}
+    <div class="row">
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+
+            <!-- Blog Post -->
+            <h2>
+                <a href="#">{{ post.title }}</a>
+            </h2>
+            <p class="lead">
+                by {% if post.user %}{{ post.user }}{% else %}anonim{% endif %}
+            </p>
+            <p><span class="glyphicon glyphicon-time"></span> Posted on {{ post.createdAt|date('F d, Y') }} at {{ post.createdAt|date('H:i') }}</p>
+            <hr>
+            <p>
+                {{ post.lead }}            
+            </p>
+            <hr>
+            <p>
+                {{ post.content|raw }}
+            </p>
+            <hr>
+
+            <h2>
+                <a href="#">Comments</a>
+            </h2>
+
+            {% if app.user %}
+                {{ form_start(form) }}
+                {{ form_widget(form)}}
+                <button class="btn btn-primary pull-right">Add comment <span class="glyphicon glyphicon-chevron-right"></span></button>
+                    {{ form_end(form)}}
+                {% else %}
+                <p>Login to add comment.<a href="{{ path('fos_user_security_login') }}" class="btn btn-primary pull-right">Login <span class="glyphicon glyphicon-chevron-right"></span></a></p>
+                    {% endif %}
+            <div style="margin-top:20px; height: 50px;"></div>
+            {% for comment in post.comments %}
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <strong>{% if comment.user %}{{ comment.user }}{% else %}anonim{% endif %}</strong> <span class="text-muted"><p class="pull-right"><span class="glyphicon glyphicon-time"></span> Commented on {{ comment.createdAt|date('F d, Y') }} at {{ comment.createdAt|date('H:i') }}</p></span>
+                    </div>
+                    <div class="panel-body">
+                        {{ comment.content }}
+                    </div><!-- /panel-body -->
+                </div><!-- /panel panel-default -->  
+            {% endfor %}
+        </div>
+
+
+        <!-- Blog Sidebar Widgets Column -->
+        <div class="col-md-4">
+
+            <!-- Blog Search Well -->
+            <div class="well">
+                <h4>Blog Search</h4>
+                <div class="input-group">
+                    <input type="text" class="form-control">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                </div>
+                <!-- /.input-group -->
+            </div>
+
+            <!-- Blog Categories Well -->
+            <div class="well">
+                <h4>Blog Categories</h4>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <ul class="list-unstyled">
+                            <li><a href="#">Category Name</a>
+                            </li>
+                            <li><a href="#">Category Name</a>
+                            </li>
+                            <li><a href="#">Category Name</a>
+                            </li>
+                            <li><a href="#">Category Name</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.col-lg-6 -->
+                    <div class="col-lg-6">
+                        <ul class="list-unstyled">
+                            <li><a href="#">Category Name</a>
+                            </li>
+                            <li><a href="#">Category Name</a>
+                            </li>
+                            <li><a href="#">Category Name</a>
+                            </li>
+                            <li><a href="#">Category Name</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.col-lg-6 -->
+                </div>
+                <!-- /.row -->
+            </div>
+
+            <!-- Side Widget Well -->
+            <div class="well">
+                <h4>Side Widget Well</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.row -->
+
+    <hr>
+{% endblock %}

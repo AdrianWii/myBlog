@@ -5,9 +5,41 @@
  */
 
 body {
-    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    padding-top: 10px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    margin: 0 0 50px; /* bottom = footer height */
+    font-family:Open Sans,'Helvetica Neue',Arial,sans-serif;
+    font-size:15px;
+    color:#777;
+    line-height:1.7;
+     width:100%;
+}
+
+.body-container{
+    height:100%;
+}
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-family:'Dosis','Helvetica Neue',Arial,sans-serif;
 }
 
 footer {
-    margin: 50px 0;
+    border-radius: 10px 10px 0 0;
+    height: 50px;
+    background-color: gray;
+    color: white;
+    bottom: 0;
+    overflow:hidden;
+    z-index:-9999;
+}
+
+div.ext-box { display: table;}
+div.int-box { display: table-cell; vertical-align: middle; }
+
+.thumbnail-cooperate
+{
+  padding:50px;
 }

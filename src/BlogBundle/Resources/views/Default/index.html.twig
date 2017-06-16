@@ -4,105 +4,131 @@
 
 
 
-        <div class="row">
+    <div class="row">
 
-            <!-- Blog Entries Column -->
-            <div class="col-md-8">
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
 
-                <h1 class="page-header">
-                    Page Heading
-                    <small>Secondary Text</small>
-                </h1>
-
-                <!-- First Blog Post -->
+            {% for post in posts %}
+                <!-- Blog Post -->
                 <h2>
-                    <a href="#">Blog Post Title</a>
+                    <a href="#">{{ post.title }}</a>
                 </h2>
                 <p class="lead">
-                    by <a href="index.php">Start Bootstrap</a>
+                    by {% if post.user %}{{ post.user }}{% else %}anonim{% endif %}
                 </p>
                 <p><span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM</p>
-                <hr>
-                <img class="img-responsive" src="http://placehold.it/900x300" alt="">
-                <hr>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.</p>
-                <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+                {# <hr>
+                 <img class="img-responsive" src="http://placehold.it/900x300" alt="">
+                 <hr>#}
+                <p>
+                    {{ post.lead }}
+                </p>
+                <a class="btn btn-primary" href="{{ path('post_show', { 'id': post.id }) }}">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
                 <hr>
+            {% endfor %}
 
-                <!-- Pager -->
-                <ul class="pager">
-                    <li class="previous">
-                        <a href="#">&larr; Older</a>
-                    </li>
-                    <li class="next">
-                        <a href="#">Newer &rarr;</a>
-                    </li>
-                </ul>
+            <!-- Pager -->
+            <ul class="pager">
+                <li class="next">
+                    {{ knp_pagination_render(posts) }}
+                </li>
+            </ul>
 
+        </div>
+
+        <!-- Blog Sidebar Widgets Column -->
+        <div class="col-md-4">
+
+            <!-- Blog Search Well -->
+            <div class="well">
+                <h4>Blog Search</h4>
+                <div class="input-group">
+                    <input type="text" class="form-control">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                </div>
+                <!-- /.input-group -->
             </div>
 
-            <!-- Blog Sidebar Widgets Column -->
-            <div class="col-md-4">
+            <!-- Blog About Me -->
+            <div class="well">
+                <p>
+                    Witaj! Nazywam się Adrian Widłak i jestem zawodowym entuzjastą programowania. 
+                    Ten blog poświęcam tematom programowania w PHP ale nie tylko. 
+                    Mam nadzieję, że pomogę Ci stać się lepszym programistą. 
+                    <a href="#">Czytaj więcej ...</a>
+                </p>
+            </div>
 
-                <!-- Blog Search Well -->
-                <div class="well">
-                    <h4>Blog Search</h4>
-                    <div class="input-group">
-                        <input type="text" class="form-control">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">
-                                <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                        </span>
+            <!-- Blog Categories Well -->
+            <div class="well">
+                <h4>Blog Categories</h4>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <ul class="list-unstyled">
+                            <li><a href="#">Category Name</a>
+                            </li>
+                            <li><a href="#">Category Name</a>
+                            </li>
+                            <li><a href="#">Category Name</a>
+                            </li>
+                            <li><a href="#">Category Name</a>
+                            </li>
+                        </ul>
                     </div>
-                    <!-- /.input-group -->
-                </div>
-
-                <!-- Blog Categories Well -->
-                <div class="well">
-                    <h4>Blog Categories</h4>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <ul class="list-unstyled">
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- /.col-lg-6 -->
-                        <div class="col-lg-6">
-                            <ul class="list-unstyled">
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- /.col-lg-6 -->
+                    <!-- /.col-lg-6 -->
+                    <div class="col-lg-6">
+                        <ul class="list-unstyled">
+                            <li><a href="#">Category Name</a>
+                            </li>
+                            <li><a href="#">Category Name</a>
+                            </li>
+                            <li><a href="#">Category Name</a>
+                            </li>
+                            <li><a href="#">Category Name</a>
+                            </li>
+                        </ul>
                     </div>
-                    <!-- /.row -->
+                    <!-- /.col-lg-6 -->
                 </div>
+                <!-- /.row -->
+            </div>
 
-                <!-- Side Widget Well -->
-                <div class="well">
-                    <h4>Side Widget Well</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
+            <!-- Side Widget Well -->
+            <div class="well">
+                <!-- Carousel -->
+                <div id="homeCarousel" class="carousel slide">
+
+                    <!-- Items -->
+                    <div class="carousel-inner">
+
+                        <!-- Item 1 -->
+                        <div class="item active">
+                            <img class="thumbnail-cooperate" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Coca-Cola_logo.svg/2000px-Coca-Cola_logo.svg.png"/>
+                        </div>
+
+                        <!-- Item 2 -->
+                        <div class="item">
+                            <img class="thumbnail-cooperate" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Sony_logo.svg/2000px-Sony_logo.svg.png"/>
+                        </div>
+
+                        <!-- Item 3 -->
+                        <div class="item">
+                            <img class="thumbnail-cooperate" src="http://zainspirowanijaponia.pl/wp-content/uploads/2015/10/logo-eduweb-2014.png" />
+                        </div>
+                    </div>
                 </div>
-
             </div>
 
         </div>
-        <!-- /.row -->
 
-        <hr>
+    </div>
+    <!-- /.row -->
+
+    <hr>
 {% endblock %}
